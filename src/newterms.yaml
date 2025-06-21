@@ -1,0 +1,14 @@
+**hsl(...) 
+stands for Hue, Saturation, and Lightness. hue: 0° is red 🍎,120° is green 🍀 ,240° is blue 🌊
+
+**what is the meaning of forward iteration ?
+> “After the animation finishes, keep the final style that the element reached at the end of the animation.”
+
+**margin-inline:
+This property corresponds to the margin-top and margin-bottom, or the margin-right and margin-left properties, depending on the values defined for writing-mode, direction, and text-orientation.
+--example:
+margin-inline: 10% 40%;
+writing-mode: horizontal-tb;
+or
+margin-inline:10px 20px;
+writing-mode: vertical-rl;

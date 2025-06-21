@@ -1,0 +1,54 @@
+needed for this project:
+## tailwind css
+## lucide-react(for icons)
+##react-router-dom
+##tailwind-merge(*is a utility that intelligently merges Tailwind CSS classes and removes conflicting ones. It helps keep your code clean, avoids styling conflicts, and simplifies dynamic class management — especially useful in React components and design systems.*)
+##@radix-ui/react-toast কী?
+এটি একটি headless toast component — মানে হচ্ছে, এর কোনো ডিজাইন নেই, কিন্তু ফাংশনালিটি পুরোপুরি তৈরি। তুমি চাইলে Tailwind CSS বা অন্য কোনো স্টাইলিং টুল দিয়ে নিজের মতো করে সাজাতে পারো।
+
+🌟 ফিচারসমূহ:
+Auto-dismiss: নির্দিষ্ট সময় পর নিজে থেকেই বন্ধ হয়ে যায়
+
+Swipe gesture support: মোবাইলে swipe করে toast বন্ধ করা যায়
+
+Keyboard accessible: স্ক্রিন রিডার ও কিবোর্ড ইউজারদের জন্য উপযোগী
+
+Customizable viewport: কোথায় toast দেখাবে, সেটা নিয়ন্ত্রণ করা যায়
+
+Controlled/uncontrolled modes: চাইলে state দিয়ে নিয়ন্ত্রণ করতে পারো, চাইলে না করেও চলবে
+
+*is a headless, accessible toast notification component for React. It supports auto-dismiss, swipe gestures, keyboard navigation, and full customization. You control the styling and behavior, making it ideal for building consistent, accessible UIs.*
+
+
+##class-variance-authority
+
+তুমি যেহেতু Tailwind CSS এবং React নিয়ে কাজ করছো, class-variance-authority (CVA) তোমার জন্য হতে পারে একদম game-changer। এটা মূলত variant-based styling সহজ ও maintainable করার জন্য তৈরি একটি utility লাইব্রেরি।
+
+🧩 class-variance-authority কী?
+class-variance-authority (CVA) হলো একটি ছোট JavaScript লাইব্রেরি যা variant-ভিত্তিক Tailwind CSS ক্লাস ম্যানেজ করতে সাহায্য করে। তুমি যখন কোনো কম্পোনেন্টে বিভিন্ন স্টাইল অপশন (যেমন primary, secondary, small, large) রাখতে চাও, তখন CVA দিয়ে সেগুলোকে সুন্দরভাবে ডিফাইন ও নিয়ন্ত্রণ করা যায়।
+
+🌟 কেন ব্যবহার করবো?
+১. Variant management সহজ হয়: একাধিক স্টাইল অপশন থাকলে কোড জটিল হয়ে যায় — CVA সেটা পরিষ্কার ও সংগঠিত রাখে।
+
+২. Dynamic class generation: প্রপস অনুযায়ী ক্লাস অটো জেনারেট হয় — কোডে if-else বা classnames দিয়ে ঝামেলা করতে হয় না।
+
+৩. Type-safe: TypeScript ব্যবহার করলে CVA তোমাকে ভুল ভ্যারিয়েন্ট টাইপিং থেকে বাঁচায়।
+
+৪. Tailwind CSS-এর সাথে দারুণভাবে কাজ করে: তুমি চাইলে Tailwind-এর utility গুলো দিয়ে পুরো স্টাইলিং করতে পারো।
+
+*(CVA) is a utility that helps manage Tailwind CSS class variants in a clean, type-safe, and scalable way. It dynamically generates class names based on props, making your component styling more maintainable and expressive — especially useful in design systems and reusable UI components. *
+
+##clsx 
+🧩 clsx কী?
+clsx হলো একটি ছোট JavaScript utility লাইব্রেরি যা দিয়ে তুমি শর্তসাপেক্ষে CSS class অ্যাসাইন করতে পারো — খুব সহজ ও পরিষ্কারভাবে। এটা মূলত classnames লাইব্রেরির একটি হালকা ও দ্রুত সংস্করণ।
+
+🌟 কেন clsx ব্যবহার করবো?
+১. Cleaner syntax: শর্তসাপেক্ষে class অ্যাড করার জন্য if-else বা string concatenation করার দরকার পড়ে না।
+
+২. Falsy values বাদ দেয়: null, undefined, false, 0, "" — এসব অটো বাদ দিয়ে দেয়।
+
+৩. Array, Object, String — সব সাপোর্ট করে: তুমি চাইলে একসাথে অনেক ধরনের ইনপুট দিতে পারো।
+
+৪. Tiny & fast: মাত্র ~239 bytes — super lightweight!
+
+*clsx is a tiny utility that helps conditionally combine CSS class names in a clean, readable, and efficient way. It supports strings, arrays, and objects, automatically filters out falsy values, and is especially useful in React and Tailwind projects for dynamic styling.*
