@@ -1,27 +1,34 @@
 @import "tailwindcss";
 
-@theme{
-  --color-border:hsl(var(--border));
-  --color-background:hsl(var(--background));/*hsl(...) stands for Hue, Saturation, and Lightness.*/
-  --color-foreground:hsl(var(--foreground));
-  --color-primary:hsl(var(--primary));
-  --color-primary-foreground:hsl(var(--primary-foreground));
-  --color-card:hsl(var(--card));
-  
-  --animate-float: float  6s ease-in-out infinite;
-  --animate-pulse-subtle:pulse-subtle 4s ease-in-out infinite;
-  --animate-fade-in : fade-in  0.7s ease-out forward;
+@theme {
 
-  /*--custom-name: animation-name duration easing delay iteration;
-*/
-  --animate-fade-in-delay-1: fade-in 0.7s ease-out 0.2s forward;
-  --animate-fade-in-delay-2: fade-in 0.7s ease-out 0.4s forward;
-  --animate-fade-in-delay-3: fade-in 0.7s ease-out 0.6s forward;
-  --animate-fade-in-delay-4: fade-in 0.7s ease-out 0.8s forward;
+    /*
+    @theme হলো Tailwind CSS-এর একটা special directive, যেটা দিয়ে তুমি তোমার প্রজেক্টের design tokens (যেমন: color, font, spacing, breakpoint ইত্যাদি) define করতে পারো। এটা সাধারণ CSS variables না—এগুলো Tailwind কে বলে দেয় কোন utility classes generate করতে হবে।
+    🧠 কেন @theme আলাদা?
+        সাধারণ CSS variables আমরা :root এ লিখি।
 
-  --animate-meter:meteor 5s linear infinite;
+        কিন্তু @theme Tailwind কে বলে দেয়: “এই variable গুলা utility class হিসেবে দরকার।”
 
-  
+        তাই Tailwind এগুলা থেকে bg-*, text-*, border-* এর মতো ক্লাস বানিয়ে ফেলে।          
+    */
+  --color-border: hsl(var(--border));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-card: hsl(var(--card));
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-subtle: pulse-subtle 4s ease-in-out infinite;
+  --animate-fade-in: fade-in 0.7s ease-out forwards;
+  --animate-fade-in-delay-1: fade-in 0.7s ease-out 0.2s forwards;
+  --animate-fade-in-delay-2: fade-in 0.7s ease-out 0.4s forwards;
+  --animate-fade-in-delay-3: fade-in 0.7s ease-out 0.6s forwards;
+  --animate-fade-in-delay-4: fade-in 0.7s ease-out 0.8s forwards;
+  --animate-meteor: meteor 5s linear infinite;
+
   @keyframes float {
     0%,
     100% {
@@ -31,7 +38,7 @@
       transform: translateY(-10px);
     }
   }
-  @keyframes pulse-subtle { /*for stars*/
+  @keyframes pulse-subtle {
     0%,
     100% {
       opacity: 1;
@@ -40,7 +47,7 @@
       opacity: 0.8;
     }
   }
-  @keyframes fade-in { /*for text and images*/
+  @keyframes fade-in {
     from {
       opacity: 0;
       transform: translateY(20px);
@@ -50,7 +57,7 @@
       transform: translateY(0);
     }
   }
-  @keyframes meteor { /*will go down or diagonal manner*/
+  @keyframes meteor {
     0% {
       transform: rotate(215deg) translateX(0);
       opacity: 1;
@@ -65,8 +72,17 @@
   }
 }
 
-
 @layer base {
+
+    /*
+    🏗️ @layer base কী?
+            Tailwind CSS এ @layer base ব্যবহার করা হয় base styles define করতে। এটা এমন style গুলো যা পুরো app জুড়ে প্রভাব ফেলবে, যেমন html, body, * (সব এলিমেন্ট), ইত্যাদি।
+
+
+            🎨 :root এ কী define করা হয়েছে?
+                    এখানে :root মানে হচ্ছে পুরো ডকুমেন্টের জন্য CSS variable define করা—আমরা এগুলোকে design tokens বলতে পারি। এই variable গুলো পরে Tailwind-এ @apply দিয়ে ইউজ হচ্ছে।
+    
+    */
   :root {
     --background: 210 40% 98%;
     --foreground: 222 47% 11%;
@@ -92,25 +108,42 @@
   }
 
   * {
-    @apply border-border;
+    @apply border-border;/*💡 সব element এর default border color হবে --border token অনুযায়ী Tailwind class border-border দিয়ে।*/
   }
 
   html {
-    @apply scroll-smooth;
+    @apply scroll-smooth;/*✨ html এ smooth scrolling enable হচ্ছে—click করলে anchor link গুলো ধীরে ধীরে scroll করবে।*/
   }
 
   body {
+    /*
+    @apply হলো Tailwind CSS-এর একটা special directive, যেটা দিয়ে তুমি multiple utility classes একসাথে custom CSS class-এ বসাতে পারো।
+    মানে, তুমি বারবার HTML-এ একই utility class লিখে ক্লান্ত? @apply দিয়ে একবারে সব বসিয়ে ফেলো!*/
     @apply bg-background text-foreground transition-colors duration-300;
     font-feature-settings: "rlig" 1, "calt" 1;
+        /*
+        📌 এই অংশে:
+                bg-background → body এর background হবে --background অনুযায়ী
+
+                text-foreground → text color হবে --foreground অনুযায়ী
+
+                transition-colors duration-300 → color পরিবর্তন হলে সেটা ৩০০ মিলিসেকেন্ডে smooth হবে
+
+                font-feature-settings → টাইপোগ্রাফিতে advanced OpenType ফিচার চালু করা
+        */
+
+
   }
 }
 
 @utility container {
+    /*margin-inline: auto; → container কে horizontally center করে
+    padding-inline: 2rem; → দুই পাশে ২ রেম padding দেয় css*/
   margin-inline: auto;
   padding-inline: 2rem;
 
   @media (width >= 640px) {
-    max-width: 640px;
+    max-width: 640px; /*"এই এলিমেন্টের প্রস্থ (width) কখনোই 640px-এর বেশি হবে না।"*/
   }
   @media (width >= 768px) {
     max-width: 768px;
@@ -126,16 +159,23 @@
   }
 }
 
+
 @utility text-glow {
+
+    /*
+    🔮 কাজ: টেক্সটে হালকা বেগুনি glow effect দেয়। 🧠 relative দিলে child elements absolute হলে ঠিকভাবে position হবে।
+    */
   @apply relative;
   text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
 }
 
-utility card-hover {
+@utility card-hover {
+  /*🌀 কাজ: কার্ডে hover করলে হালকা zoom-in হয় এবং shadow পড়ে। ⏱️ transition-transform + duration-300 মানে smooth 300ms animation।*/
   @apply transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg;
 }
 
 @utility gradient-border {
+  /*🌈 কাজ: একটা গ্রেডিয়েন্ট বর্ডার তৈরি করে। 📌 background-clip: padding-box মানে background শুধু padding এর মধ্যে থাকবে।*/
   @apply relative rounded-md;
   background: linear-gradient(to right, hsl(var(--card)), hsl(var(--card)));
   background-clip: padding-box;
@@ -143,12 +183,18 @@ utility card-hover {
 }
 
 @utility cosmic-button {
+
+  /*🪐 কাজ: একটা animated, glowing, responsive button বানায়।
+        Hover করলে glow করে এবং একটু বড় হয়
+        Click করলে একটু ছোট হয় (press effect)
+  */
   @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium 
          transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)]
          hover:scale-105 active:scale-95;
 }
 
 @utility star {
+  🌠 কাজ: একটা shooting star বা meteor effect তৈরি করে।
   @apply absolute rounded-full bg-white;
   box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.4);
 }
@@ -157,6 +203,7 @@ utility card-hover {
   @apply absolute bg-linear-to-r from-white via-white to-transparent rounded-full;
   box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3);
 }
+
 
 #root {
   max-width: 100%;
