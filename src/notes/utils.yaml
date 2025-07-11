@@ -1,0 +1,36 @@
+import { clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export const cn = (...inputs) => {
+  return twMerge(clsx(inputs));
+};
+এখানে cn() নামে একটা utility function বানানো হয়েছে, যেটা React + Tailwind CSS প্রজেক্টে className handle করার জন্য খুবই জনপ্রিয়।
+
+🔍 ধাপে ধাপে ব্যাখ্যা:
+1️⃣ clsx(inputs)
+clsx হলো একটা lightweight JavaScript লাইব্রেরি যা conditionally className যোগ করতে সাহায্য করে।
+
+তুমি চাইলে clsx("btn", isActive && "btn-active") এর মতো করে class যোগ করতে পারো।
+
+এটা falsy values (null, false, undefined) বাদ দিয়ে clean string return করে।
+
+2️⃣ twMerge(...)
+twMerge Tailwind CSS-এর conflicting class গুলো intelligently resolve করে।
+
+যেমন: twMerge("bg-red-500", "bg-blue-500") → শুধু bg-blue-500 থাকবে, কারণ এটা conflict resolve করে।
+
+3️⃣ cn(...inputs)
+এই function clsx দিয়ে class গুলো combine করে, তারপর twMerge দিয়ে conflict-free final className return করে।
+
+isPrimary true হলে bg-primary text-white যোগ হবে
+
+isDisabled true হলে opacity-50 cursor-not-allowed যোগ হবে
+
+সব class গুলো merge হবে এবং conflict-free final className তৈরি হবে
+
+🎯 কেন এটা useful?
+
+ফিচার	সুবিধা
+clsx	conditionally class যোগ করা সহজ
+twMerge	Tailwind conflict resolve করে
+cn()	clean, reusable utility function
